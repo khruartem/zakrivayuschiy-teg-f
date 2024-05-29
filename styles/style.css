@@ -35,17 +35,18 @@
 .header {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 21px;
   padding-block-start: clamp(120px, 25vw, 135px);
-  padding-block-end: 25px;
+  padding-block-end: 22px;
   align-items: center;
   font-family: var(--accent-font, 'Press Start 2P'), fantasy;
   font-weight: 400;
-  margin-block-end: 100px;
+  margin-block-end: 102px;
 }
 
 .header_width {
   inline-size: var(--section-width, 100%);
+  margin-inline: auto;
 }
 
 .content-section {
@@ -57,6 +58,7 @@
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
   text-align: center;
   line-height: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  text-transform: uppercase;
 }
 
 .header__title {
@@ -66,14 +68,11 @@
   text-transform: uppercase;
 }
 
-.header__theme-menu {
-  margin-block-start: 5px;
-}
-
 .theme-menu__list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: clamp(3px, calc(100vw / 200), 4px);
+  padding-inline-start: 22px;
 }
 
 .theme-menu__button {
@@ -84,8 +83,8 @@
   border-left: none;
   border-right: none;
   text-transform: uppercase;
-  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
-  line-height: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  font-size: 14px;
+  line-height: 14px;
   padding: 0;
   cursor: pointer;
   transition: opacity 0.3s ease;
@@ -129,13 +128,13 @@
 .theme-menu__button:disabled::before {
   content: '▶';
   position: absolute;
-  left: var(--pointer-indent, -18px);
-  animation: pointer 2s infinite;
-  animation-timing-function: steps(2, end);
+  left: -22px;
+  animation: pointer 0.5s infinite alternate ease-in-out;
 }
 
 .section_width {
   inline-size: var(--section-width, 100%);
+  margin-inline: auto;
 }
 
 .section__article-list {
@@ -150,11 +149,12 @@
 }
 
 .card__title {
-  --card-text-font-weight: 700;
+  --card-text-font-weight: var(--card-title-font-weight, 700);
   
   font-variation-settings: 'wght' var(--card-text-font-weight, 400);
   line-height: 22px;
   padding: 3px 10px 4px;
+  font-size: 18px;
 }
 
 .image-wrapper {
@@ -179,6 +179,7 @@
   mix-blend-mode: hard-light;
   text-shadow: 1px 1px 0 0 var(--text-stroke, #fff);
   opacity: 0.5;
+  z-index: 2;
 }
 
 @supports((text-stroke: 1px #fff) or (-webkit-text-stroke: 1px #fff)) {
@@ -191,37 +192,39 @@
 .card__image {
   inline-size: 100%;
   block-size: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-.card__image_portal {
+.card__image_filter-brightness {
   filter: brightness(200%);
 }
 
-.card__image_cat {
+.card__image_filter-blur {
   filter: blur(3px);
 }
 
-.card__image_mario {
+.card__image_filter-contrast {
   filter: contrast(200%);
 }
 
-.card__image_hunting {
+.card__image_filter-grayscale {
   filter: grayscale(0.3);
 }
 
-.card__image_game {
+.card__image_filter-saturate {
   filter: saturate(200%);
 }
 
-.card__image_robot {
+.card__image_filter-hue-rotate {
   filter: hue-rotate(-90deg);
 }
 
-.card__image_error {
+.card__image_filter-mix {
   filter: invert(1) brightness(200%) saturate(60%);
 }
 
-.card__image_sea {
+.card__image_filter-sepia {
   filter: sepia(40%);
 }
 
@@ -241,7 +244,6 @@
   display: flex;
   flex-direction: row;
   gap: 5px;
-  max-block-size: 38px;
 }
 
 .card__icon-button {
@@ -251,6 +253,7 @@
   padding: 0;
   cursor: pointer;
   inline-size: 41px;
+  block-size: 38px;
   border: 2px solid rgba(0, 0, 0, 0);
   transition: border-color 0.3s ease;
 }
@@ -260,7 +263,6 @@
 }
 
 .card__icon-button:focus-visible {
-  border: 2px solid transparent;
   border-color: var(--accent-color, #000);
 }
 
@@ -292,7 +294,7 @@
 .like-icon:hover .main-body {
   fill: var(--heart-contur-color, #000);
   opacity: 1;
-  transition: opacity 0.3s 0.03s linear;
+  transition: opacity 0.3s 0.05s linear;
 }
 
 .like-icon:active .core {
@@ -304,7 +306,7 @@
 .like-icon:active .main-body {
   fill: var(--heart-color, #ff0000);
   opacity: 1;
-  transition: opacity 0.3s 0.03s linear;
+  transition: opacity 0.3s 0.05s linear;
 }
 
 .like-icon.is-liked .core {
@@ -316,7 +318,7 @@
 .like-icon.is-liked .main-body {
   fill: var(--heart-color, #ff0000);
   opacity: 1;
-  transition: opacity 0.3s 0.03s linear;
+  transition: opacity 0.3s 0.05s linear;
 }
 
 .like-icon.is-liked .contour {
@@ -326,11 +328,11 @@
 
 .like-icon.is-liked .heart {
   transform-origin: center;
-  animation: heart-scale 0.3s ease-in 0.1s 1 normal backwards;
+  animation: heart-scale 0.3s ease-in 0.1s 1 alternate backwards;
 }
 
 .like-icon.is-liked .sparks {
-  animation: sparks-show 0.3s ease-in 0.3s 1 normal backwards;
+  animation: sparks-show 0.3s ease-in 0.3s 1 alternate backwards;
 }
 
 .popup {
@@ -342,7 +344,7 @@
 .popup__wrapper {
   display: grid;
   grid-template-columns: 39px 1fr;
-  grid-template-rows: 1fr 38px;
+  grid-template-rows: 1fr;
   column-gap: 20px;
   row-gap: 30px;
 }
@@ -367,6 +369,7 @@
 
 .card__like-button {
   inline-size: 130px;
+  block-size: 38px;
 }
 
 .animated {
@@ -418,7 +421,7 @@
   color: var(--button-text-color, #fff);
 }
 
-.footer__button {
+.section-save__button {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -449,7 +452,7 @@
 .popup[open] {
   display: grid;
   grid-template-columns: 39px 1fr;
-  grid-template-rows: 1fr 38px;
+  grid-template-rows: 1fr;
   column-gap: 20px;
   row-gap: 30px;
 }
@@ -475,6 +478,7 @@
 
 .popup__button {
   grid-column-end: span 2;
+  block-size: 38px;
 }
 
 @media (min-width: 376px) {
@@ -485,31 +489,34 @@
   .page {
     padding-block-end: 103px;
   }
-  
-  .header_width {
-    --section-width: 700px;
-    
-    margin-inline: auto;
-  }
-
-  .section_width {
-    --section-width: 696px;
-
-    margin-inline: auto;
-  }
 
   .card__title {
     padding-block-start: 4px;
   }
 
-  .footer__button {
+  .section-save__button {
     flex-direction: row;
     margin-block-start: 50px;
-    padding: 11.9px 14.9px;
+    padding: 15px 20px;
+  }
+
+  .button__floppy {
+    inline-size: 21px;
   }
 
   .popup {
     max-inline-size: 353px;
   }
+}
 
+@media (min-width: 697px) {
+  .section_width {
+    --section-width: 696px;
+  }
+}
+
+@media (min-width: 701px) {
+  .header_width {
+    --section-width: 700px;
+  }
 }
