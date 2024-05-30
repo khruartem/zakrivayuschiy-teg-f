@@ -15,38 +15,40 @@
 */
 
 .page {
-  min-inline-size: 320px;
-  min-block-size: 100dvb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 102px;
+  padding-block: 100px;
+  color: var(--accent-color, #000);
   font-family: var(--main-font, 'Inter'), sans-serif;
-  font-variation-settings: 'wght' var(--card-text-font-weight, 400);
   font-size: 18px;
   line-height: 21px;
-  color: var(--accent-color, #000);
   background-image:
     var(--background-image,
     repeating-linear-gradient(to right, #d3d3d3 0 2px, transparent 2px 4px),
     repeating-linear-gradient(to top, #d3d3d3 0 2px, transparent 2px 4px),
     linear-gradient(#e7e7e7 0.01%, #1a1a1a));
-  background-attachment: fixed;
   background-size: cover;
-  padding-block: 100px;
+  background-attachment: fixed;
+  min-inline-size: 320px;
+  min-block-size: 100dvb;
+  font-variation-settings: 'wght' var(--card-text-font-weight, 400);
 }
 
 .header {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 21px;
   padding-block-start: clamp(120px, 25vw, 135px);
   padding-block-end: 22px;
-  align-items: center;
   font-family: var(--accent-font, 'Press Start 2P'), fantasy;
   font-weight: 400;
-  margin-block-end: 102px;
 }
 
 .header_width {
   inline-size: var(--section-width, 100%);
-  margin-inline: auto;
 }
 
 .content-section {
@@ -56,15 +58,15 @@
 
 .header__logo {
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
-  text-align: center;
   line-height: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  text-align: center;
   text-transform: uppercase;
 }
 
 .header__title {
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
-  text-align: center;
   line-height: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -76,18 +78,18 @@
 }
 
 .theme-menu__button {
-  appearance: none;
-  background-color: transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0);
   border-top: none;
-  border-left: none;
   border-right: none;
-  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  border-left: none;
+  padding: 0;
   font-size: 14px;
   line-height: 14px;
-  padding: 0;
-  cursor: pointer;
+  text-transform: uppercase;
+  background-color: transparent;
   transition: opacity 0.3s ease;
+  cursor: pointer;
+  appearance: none;
 }
 
 .theme-menu__button:hover {
@@ -100,8 +102,8 @@
   width: 0%;
   height: 3px;
   margin-top: 0;
-  background-color: var(--accent-color, #000);
   opacity: 0.6;
+  background-color: var(--accent-color, #000);
   transition: width 0.3s ease;
 }
 
@@ -120,8 +122,8 @@
 }
 
 .theme-menu__button:disabled {
-  opacity: 0.6;
   position: relative;
+  opacity: 0.6;
   pointer-events: none;
 }
 
@@ -132,9 +134,12 @@
   animation: pointer 0.5s infinite alternate ease-in-out;
 }
 
-.section_width {
+.content_width {
   inline-size: var(--section-width, 100%);
-  margin-inline: auto;
+}
+
+.section {
+  inline-size: 100%;
 }
 
 .section__article-list {
@@ -150,50 +155,50 @@
 
 .card__title {
   --card-text-font-weight: var(--card-title-font-weight, 700);
-  
-  font-variation-settings: 'wght' var(--card-text-font-weight, 400);
-  line-height: 22px;
   padding: 3px 10px 4px;
   font-size: 18px;
+  line-height: 22px;
+  
+  font-variation-settings: 'wght' var(--card-text-font-weight, 400);
 }
 
 .image-wrapper {
   position: relative;
-  inline-size: 100%;
-  aspect-ratio: 1 / 1;
   border-top: none;
+  border-right: 2px solid var(--accent-color, #000);
   border-bottom: none;
   border-left: 2px solid var(--accent-color, #000);
-  border-right: 2px solid var(--accent-color, #000);
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
 }
 
 .image-label {
   position: absolute;
-  right: clamp(13px, 1.8vw, 25px);
   top: clamp(25px, 1.8vw, 27px);
+  right: clamp(13px, 1.8vw, 25px);
+  z-index: 2;
+  opacity: 0.5;
+  color: var(--accent-color, #000);
   font-family: var(--accent-font, 'Press Start 2P'), fantasy;
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
-  color: var(--accent-color, #000);
-  mix-blend-mode: hard-light;
   text-shadow: 1px 1px 0 0 var(--text-stroke, #fff);
-  opacity: 0.5;
-  z-index: 2;
+  mix-blend-mode: hard-light;
 }
 
 @supports((text-stroke: 1px #fff) or (-webkit-text-stroke: 1px #fff)) {
   .image-label {
-      -webkit-text-stroke: 1px var(--text-stroke, #fff);
       text-shadow: none;
+      -webkit-text-stroke: 1px var(--text-stroke, #fff);
   }
 } 
 
 .card__image {
-  inline-size: 100%;
-  block-size: 100%;
   object-fit: cover;
   object-position: center;
+  inline-size: 100%;
+  block-size: 100%;
 }
 
 .card__image_filter-brightness {
@@ -240,22 +245,22 @@
 }
 
 .wrapper {
-  align-self: flex-end;
   display: flex;
   flex-direction: row;
   gap: 5px;
+  align-self: flex-end;
 }
 
 .card__icon-button {
-  appearance: none;
   border: none;
-  background-color: transparent;
+  border: 2px solid rgba(0, 0, 0, 0);
   padding: 0;
+  background-color: transparent;
+  transition: border-color 0.3s ease;
   cursor: pointer;
+  appearance: none;
   inline-size: 41px;
   block-size: 38px;
-  border: 2px solid rgba(0, 0, 0, 0);
-  transition: border-color 0.3s ease;
 }
 
 .card__icon-button:focus {
@@ -281,8 +286,8 @@
 }
 
 .like-icon:hover .core {
-  fill: var(--heart-contur-color, #000);
   opacity: 1;
+  fill: var(--heart-contur-color, #000);
   transition: opacity 0.3s linear;
 }
 
@@ -292,32 +297,32 @@
 }
 
 .like-icon:hover .main-body {
-  fill: var(--heart-contur-color, #000);
   opacity: 1;
+  fill: var(--heart-contur-color, #000);
   transition: opacity 0.3s 0.05s linear;
 }
 
 .like-icon:active .core {
-  fill: var(--heart-color, #ff0000);
   opacity: 1;
+  fill: var(--heart-color, #ff0000);
   transition: opacity 0.3s linear;
 }
 
 .like-icon:active .main-body {
-  fill: var(--heart-color, #ff0000);
   opacity: 1;
+  fill: var(--heart-color, #ff0000);
   transition: opacity 0.3s 0.05s linear;
 }
 
 .like-icon.is-liked .core {
-  fill: var(--heart-color, #ff0000);
   opacity: 1;
+  fill: var(--heart-color, #ff0000);
   transition: opacity 0.3s linear;
 }
 
 .like-icon.is-liked .main-body {
-  fill: var(--heart-color, #ff0000);
   opacity: 1;
+  fill: var(--heart-color, #ff0000);
   transition: opacity 0.3s 0.05s linear;
 }
 
@@ -328,16 +333,16 @@
 
 .like-icon.is-liked .heart {
   transform-origin: center;
-  animation: heart-scale 0.3s ease-in 0.1s 1 alternate backwards;
+  animation: heart-scale 0.3s ease-in 0.1s 1 alternate;
 }
 
 .like-icon.is-liked .sparks {
-  animation: sparks-show 0.3s ease-in 0.3s 1 alternate backwards;
+  animation: sparks-show 0.3s ease-in 0.3s 1 alternate;
 }
 
 .popup {
-  color: var(--accent-color, #000);
   padding: 29.4px 40.4px;
+  color: var(--accent-color, #000);
   min-inline-size: 341px;
 }
 
@@ -345,22 +350,22 @@
   display: grid;
   grid-template-columns: 39px 1fr;
   grid-template-rows: 1fr;
-  column-gap: 20px;
   row-gap: 30px;
+  column-gap: 20px;
 }
 
 .popup__text {
-  font-size: 14px;
-  line-height: 150%;
   font-family: var(--accent-font, 'Press Start 2P'), fantasy;
   font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
   text-transform: uppercase;
 }
 
 .popup__floppy {
+  align-self: center;
   inline-size: 39px;
   aspect-ratio: 1 / 1;
-  align-self: center;
 }
 
 .popup__button {
@@ -373,37 +378,37 @@
 }
 
 .animated {
-  transition: box-shadow 0.3s ease;
   position: relative;
+  transition: box-shadow 0.3s ease;
 }
 
 .decorated {
-  appearance: none;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid var(--accent-color, #000);
+  padding: 0;
   background-color: transparent;
   cursor: pointer;
-  border: 2px solid var(--accent-color, #000);
+  appearance: none;
 }
 
 .animated:focus {
-  outline: none;
   box-shadow: 2px 2px 0 0 var(--accent-color, #000);
+  outline: none;
 }
 
 .animated::after {
   content: '';
   position: absolute;
-  display: block;
   inset: 0;
+  display: block;
   background-color: var(--accent-color, #000);
-  min-block-size: 100%;
-  min-inline-size: 100%;
+  transition: transform 0.5s ease-in-out;
   transform: scaleX(0);
   transform-origin: 0 0;
-  transition: transform 0.5s ease-in-out;
+  min-block-size: 100%;
+  min-inline-size: 100%;
 }
 
 .animated:hover::after {
@@ -411,41 +416,41 @@
 }
 
 .button__text {
-  font-size: 14px;
-  line-height: 90%;
+  z-index: 2;
+  color: var(--button-text-color, #fff);
   font-family: var(--accent-font, 'Press Start 2P'), fantasy;
   font-weight: 400;
+  font-size: 14px;
+  line-height: 90%;
   text-align: center;
-  z-index: 2;
   mix-blend-mode: difference;
-  color: var(--button-text-color, #fff);
 }
 
 .section-save__button {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   align-items: center;
-  background-color: var(--main-color, #fff);
+  gap: 8px;
   margin-inline: auto;
   margin-block-start: 54px;
-  padding: 16.1px 18.4px;
-  appearance: none;
-  cursor: pointer;
   border: 2px solid var(--accent-color, #000);
+  padding: 16.1px 18.4px;
+  background-color: var(--main-color, #fff);
+  cursor: pointer;
+  appearance: none;
 }
 
 .button__floppy {
+  z-index: 2;
+  color: var(--button-text-color, #fff);
   inline-size: 28px;
   aspect-ratio: 1 / 1;
   mix-blend-mode: difference;
-  color: var(--button-text-color, #fff);
-  z-index: 2;
 }
 
 .popup {
-  color: var(--accent-color, #000);
   padding: 28.4px 40.4px;
+  color: var(--accent-color, #000);
   min-inline-size: 341px;
 }
 
@@ -453,27 +458,27 @@
   display: grid;
   grid-template-columns: 39px 1fr;
   grid-template-rows: 1fr;
-  column-gap: 20px;
   row-gap: 30px;
+  column-gap: 20px;
 }
 
 .popup::backdrop {
-  background-color: #000;
   opacity: 0.75;
+  background-color: #000;
 }
 
 .popup__text {
-  font-size: 14px;
-  line-height: 150%;
   font-family: var(--accent-font, 'Press Start 2P'), fantasy;
   font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
   text-transform: uppercase;
 }
 
 .popup__floppy {
+  align-self: center;
   inline-size: 39px;
   aspect-ratio: 1 / 1;
-  align-self: center;
 }
 
 .popup__button {
@@ -509,14 +514,12 @@
   }
 }
 
-@media (min-width: 697px) {
-  .section_width {
-    --section-width: 696px;
-  }
-}
-
-@media (min-width: 701px) {
+@media (min-width: 720px) {
   .header_width {
     --section-width: 700px;
+  }
+
+  .content_width {
+    --section-width: 696px;
   }
 }
